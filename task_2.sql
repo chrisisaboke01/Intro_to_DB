@@ -2,14 +2,14 @@
 CREATE DATABASE IF NOT EXISTS alx_book_store;
 USE alx_book_store;
 
--- Create Authors table
+-- Authors table (unchanged)
 CREATE TABLE IF NOT EXISTS Authors (
     author_id INT PRIMARY KEY,
     author_name VARCHAR(255) NOT NULL,
     nationality VARCHAR(100)
 );
 
--- Create Books table (exact casing)
+-- Books table (unchanged)
 CREATE TABLE IF NOT EXISTS Books (
     book_id INT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
@@ -20,16 +20,16 @@ CREATE TABLE IF NOT EXISTS Books (
     FOREIGN KEY (author_id) REFERENCES Authors(author_id)
 );
 
--- Create Customers table (exact casing)
+-- Corrected Customers table
 CREATE TABLE IF NOT EXISTS Customers (
     customer_id INT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,
+    customer_name VARCHAR(215) NOT NULL,  -- Changed from 'name' to 'customer_name' with VARCHAR(215)
+    email VARCHAR(215) UNIQUE NOT NULL,   -- Adjusted VARCHAR length to 215
     phone VARCHAR(20),
     address TEXT
 );
 
--- Create Orders table (exact casing)
+-- Orders table (unchanged)
 CREATE TABLE IF NOT EXISTS Orders (
     order_id INT PRIMARY KEY,
     customer_id INT,
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS Orders (
     FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
 );
 
--- Create Order_Details table (underscore & casing)
+-- Order_Details table (unchanged)
 CREATE TABLE IF NOT EXISTS Order_Details (
     order_detail_id INT PRIMARY KEY,
     order_id INT,
