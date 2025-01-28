@@ -2,14 +2,14 @@
 CREATE DATABASE IF NOT EXISTS alx_book_store;
 USE alx_book_store;
 
--- Create authors table
-CREATE TABLE IF NOT EXISTS authors (
+-- Create Authors table with correct column name
+CREATE TABLE IF NOT EXISTS Authors (
     author_id INT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
+    author_name VARCHAR(255) NOT NULL,
     nationality VARCHAR(100)
 );
 
--- Create books table
+-- Create books table referencing Authors
 CREATE TABLE IF NOT EXISTS books (
     book_id INT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS books (
     publication_year YEAR,
     price DECIMAL(10, 2) NOT NULL,
     isbn VARCHAR(13) UNIQUE,
-    FOREIGN KEY (author_id) REFERENCES authors(author_id)
+    FOREIGN KEY (author_id) REFERENCES Authors(author_id)
 );
 
 -- Create customers table
