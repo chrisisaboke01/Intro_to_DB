@@ -2,15 +2,15 @@
 CREATE DATABASE IF NOT EXISTS alx_book_store;
 USE alx_book_store;
 
--- Create Authors table with correct column name
+-- Create Authors table
 CREATE TABLE IF NOT EXISTS Authors (
     author_id INT PRIMARY KEY,
     author_name VARCHAR(255) NOT NULL,
     nationality VARCHAR(100)
 );
 
--- Create books table referencing Authors
-CREATE TABLE IF NOT EXISTS books (
+-- Create Books table (exact casing)
+CREATE TABLE IF NOT EXISTS Books (
     book_id INT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     author_id INT,
@@ -20,8 +20,8 @@ CREATE TABLE IF NOT EXISTS books (
     FOREIGN KEY (author_id) REFERENCES Authors(author_id)
 );
 
--- Create customers table
-CREATE TABLE IF NOT EXISTS customers (
+-- Create Customers table (exact casing)
+CREATE TABLE IF NOT EXISTS Customers (
     customer_id INT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
@@ -29,22 +29,22 @@ CREATE TABLE IF NOT EXISTS customers (
     address TEXT
 );
 
--- Create orders table
-CREATE TABLE IF NOT EXISTS orders (
+-- Create Orders table (exact casing)
+CREATE TABLE IF NOT EXISTS Orders (
     order_id INT PRIMARY KEY,
     customer_id INT,
     order_date DATE NOT NULL,
     total_amount DECIMAL(10, 2) NOT NULL,
-    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
 );
 
--- Create order_details table
-CREATE TABLE IF NOT EXISTS order_details (
+-- Create Order_Details table (underscore & casing)
+CREATE TABLE IF NOT EXISTS Order_Details (
     order_detail_id INT PRIMARY KEY,
     order_id INT,
     book_id INT,
     quantity INT NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
-    FOREIGN KEY (order_id) REFERENCES orders(order_id),
-    FOREIGN KEY (book_id) REFERENCES books(book_id)
+    FOREIGN KEY (order_id) REFERENCES Orders(order_id),
+    FOREIGN KEY (book_id) REFERENCES Books(book_id)
 );
